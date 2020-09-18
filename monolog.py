@@ -15,7 +15,7 @@ class MongoLogger:
     """
     MongoDB logger class.\n
     """
-    LEVELS = ['crit', 'err', 'warn', 'info', 'debug']
+    LEVELS = {'crit': 50, 'err': 40, 'warn': 30, 'info': 20, 'debug': 10}
 
     def __new__(cls):
         if not hasattr(cls, 'instance'):
@@ -37,15 +37,14 @@ class MongoLogger:
         self._node = self.config["node"]
         self._current_level = self.config["currentLevel"]
         self._collection = self.config["collectionName"]
-
+        self._std_logger_duplicate = self.config["stdLoggerDuplicate"]
         try:
             logging.config.fileConfig('../config/log_config')
             self._std_logger = logging.getLogger('MainLog')
         except Exception as ex_error:
             print(f"MongoLogger error. ex_error: {ex_error}.")
             self._std_logger = None
-
-    on_same_line = False
+            self._std_logger_duplicate = False
 
     def _emit(self, level: str, ssid: str, msg: str, data: dict):
         """
@@ -56,6 +55,8 @@ class MongoLogger:
         :param data: dump dict
         :return: None
         """
+        if self._std_logger_duplicate:
+            self._std_logger.log(self.LEVELS[level], "[%s][%s] %s %s.", level, ssid, msg, data)
         try:
             collection = self._db[datetime.datetime.now().strftime(self._collection)]
             var = {
