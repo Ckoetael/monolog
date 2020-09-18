@@ -5,7 +5,6 @@ setup(
     version='0.1',
     description='MongoDB logger + std_logger',
     author='CkoeTael',
-    namespace_packages=['monolog'],
     packages=find_packages(),
     platforms='any',
     zip_safe=False,

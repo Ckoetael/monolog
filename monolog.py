@@ -17,6 +17,7 @@ class MongoLogger:
     """
     LEVELS = {'crit': 50, 'err': 40, 'warn': 30, 'info': 20, 'debug': 10}
 
+    @classmethod
     def __new__(cls):
         if not hasattr(cls, 'instance'):
             cls.instance = super(MongoLogger, cls).__new__(cls)
