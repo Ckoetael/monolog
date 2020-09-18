@@ -22,11 +22,13 @@ class MongoLogger:
             cls.instance = super(MongoLogger, cls).__new__(cls)
         return cls.instance
 
-    def __init__(self):
-        if os.path.exists("../monolog.local.json"):
-            self.config = json.load(open("../monolog.local.json"))
+    def __init__(self, config_file="monolog.json"):
+        _current_dir = _path = os.getcwd()
+        _local_config_file = os.path.join(_current_dir,  "config", "monolog.local.json")
+        if os.path.exists(_local_config_file):
+            self.config = json.load(open(_local_config_file))
         else:
-            self.config = json.load(open("../config/monolog.json"))
+            _config_file = os.path.join(_current_dir, "config", config_file)
         self._mongo_cli = MongoClient(self.config["serv"],
                                       self.config["port"],
                                       username=self.config["username"],
