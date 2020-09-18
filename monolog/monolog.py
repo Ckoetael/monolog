@@ -24,7 +24,7 @@ class MongoLogger:
 
     def __init__(self, config_file="monolog.json"):
         _current_dir = _path = os.getcwd()
-        _local_config_file = os.path.join(_current_dir,  "config", "monolog.local.json")
+        _local_config_file = os.path.join(_current_dir, "config", "monolog.local.json")
         if os.path.exists(_local_config_file):
             self.config = json.load(open(_local_config_file))
         else:
@@ -41,7 +41,7 @@ class MongoLogger:
         self._collection = self.config["collectionName"]
         self._std_logger_duplicate = self.config["stdLoggerDuplicate"]
         try:
-            logging.config.fileConfig('../config/log_config')
+            logging.config.fileConfig(os.path.join(_current_dir, "config", "log_config"))
             self._std_logger = logging.getLogger('MainLog')
         except Exception as ex_error:
             print(f"MongoLogger error. ex_error: {ex_error}.")
