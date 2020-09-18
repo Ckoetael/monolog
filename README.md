@@ -1,8 +1,8 @@
 # monolog
-##Singletoned MongoDB logger + std logger
+## Singletoned MongoDB logger + std logger
 
 
-####Requirements:
+#### Requirements:
 * pymongo>=3.10.1
 
 #### Using:
