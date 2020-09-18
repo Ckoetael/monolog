@@ -1,23 +1,31 @@
+"""
+Mongo logger package
+"""
 from setuptools import setup, find_packages
+PACKAGE = "monolog"
+NAME = "monolog"
+DESCRIPTION = 'MongoDB logger + std_logger'
+AUTHOR = 'Alex Minko'
+AUTHOR_EMAIL = "minko.a.r@gmail.com"
+URL = "https://github.com/Ckoetael/monolog"
+VERSION = __import__(PACKAGE).__version__
 
 setup(
-    name='monolog',
-    version='0.1',
-    description='MongoDB logger + std_logger',
-    author='CkoeTael',
-    packages=find_packages(),
-    platforms='any',
-    zip_safe=False,
-    include_package_data=True,
-    dependency_links=[],
-    install_requires=['pymongo>=3.10.1'],
+    name=NAME,
+    version=VERSION,
+    description=DESCRIPTION,
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    license="BSD",
+    url=URL,
+    packages=find_packages(exclude=["tests.*", "tests"]),
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Environment :: Web Environment',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Topic :: Internet :: WWW/HTTP :: Dynamic Content'
+        "Development Status :: 3 - Alpha",
+        "Environment :: Web Environment",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
     ],
+    zip_safe=False,
 )

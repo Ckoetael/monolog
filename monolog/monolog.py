@@ -126,5 +126,3 @@ class MongoLogger:
         :return: None
         """
         self._emit('debug', ssid, msg, data)
-
-a = MongoLogger()
