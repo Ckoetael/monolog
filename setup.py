@@ -19,6 +19,7 @@ setup(
     license="BSD",
     url=URL,
     packages=find_packages(exclude=["tests.*", "tests"]),
+    install_requires=['pymongo>=3.10.1'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
