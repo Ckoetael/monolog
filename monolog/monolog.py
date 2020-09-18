@@ -17,15 +17,14 @@ class MongoLogger:
     """
     LEVELS = {'crit': 50, 'err': 40, 'warn': 30, 'info': 20, 'debug': 10}
 
-    @classmethod
     def __new__(cls):
         if not hasattr(cls, 'instance'):
             cls.instance = super(MongoLogger, cls).__new__(cls)
         return cls.instance
 
     def __init__(self):
-        if os.path.exists("monolog.local.json"):
-            self.config = json.load(open("monolog.local.json"))
+        if os.path.exists("../monolog.local.json"):
+            self.config = json.load(open("../monolog.local.json"))
         else:
             self.config = json.load(open("../config/monolog.json"))
         self._mongo_cli = MongoClient(self.config["serv"],
@@ -127,3 +126,5 @@ class MongoLogger:
         :return: None
         """
         self._emit('debug', ssid, msg, data)
+
+a = MongoLogger()
