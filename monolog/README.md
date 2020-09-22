@@ -1,6 +1,10 @@
-# monolog
+# monolog Python package
 ## Singletoned MongoDB logger + std logger
 
+### Installation
+```sh 
+pip install git+ssh://git@gitlab.crpo.su/vgds/monolog.git
+```
 
 #### Requirements:
 * pymongo>=3.10.1
@@ -16,6 +20,7 @@ dump = {
 }
 logger.cricital(ssid, msg, dump)
 ```
+Config must be in config directory, previously will be used *monolog.local.json*
 #### Config example
 ```json
 {
@@ -28,7 +33,7 @@ logger.cricital(ssid, msg, dump)
   "dataBase": "logs",
   "currentLevel": "debug",
   "collectionName": "test_collection_%Y%m", #datatime formated
-  "std_logger_duplicate": false,
+  "stdLoggerDuplicate": false,
   "node": {
             "host": "myService",
             "ip": "127.0.0.1"

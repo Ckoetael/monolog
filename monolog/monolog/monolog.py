@@ -8,6 +8,7 @@ import logging
 import logging.config
 import os
 import json
+import inspect
 from pymongo import MongoClient
 
 
@@ -29,6 +30,7 @@ class MongoLogger:
             self.config = json.load(open(_local_config_file))
         else:
             _config_file = os.path.join(_current_dir, "config", config_file)
+            self.config = json.load(open(_config_file))
         self._mongo_cli = MongoClient(self.config["serv"],
                                       self.config["port"],
                                       username=self.config["username"],
@@ -57,10 +59,13 @@ class MongoLogger:
         :param data: dump dict
         :return: None
         """
+        current_frame = inspect.currentframe()
+        emit_func = current_frame.f_back.f_back.f_code.co_name
         if self._std_logger_duplicate:
-            self._std_logger.log(self.LEVELS[level], "[%s][%s] %s %s.", level, ssid, msg, data)
+            self._std_logger.log(self.LEVELS[level], "[%s][%s][%s] %s %s.", level, emit_func, ssid, msg, data)
         try:
             collection = self._db[datetime.datetime.now().strftime(self._collection)]
+            data["function"] = emit_func
             var = {
                 "created": datetime.datetime.now(),
                 "node": self._node,
@@ -79,7 +84,7 @@ class MongoLogger:
                 print("MongoLogger Critical error. %s dump: [%s][%s] %s %s.",
                       ex_error, level, ssid, msg, data)
 
-    def critical(self, ssid: str, msg: str, data: dict) -> None:
+    def critical(self, ssid: str, msg: str, data=None) -> None:
         """
         Critical message.
         :param ssid: session ID
@@ -87,9 +92,13 @@ class MongoLogger:
         :param data: dump dict
         :return: None
         """
+        if data is None:
+            data = {}
+        traceback = list(map(lambda x: {"function": x.function, "lineno": x.lineno}, inspect.stack()))
+        data["traceback"] = traceback
         self._emit('crit', ssid, msg, data)
 
-    def error(self, ssid: str, msg: str, data: dict) -> None:
+    def error(self, ssid: str, msg: str, data=None) -> None:
         """
         Error message.
         :param ssid: session ID
@@ -97,9 +106,11 @@ class MongoLogger:
         :param data: dump dict
         :return: None
         """
+        if data is None:
+            data = {}
         self._emit('err', ssid, msg, data)
 
-    def warning(self, ssid: str, msg: str, data: dict) -> None:
+    def warning(self, ssid: str, msg: str, data=None) -> None:
         """
         Warning message.
         :param ssid: session ID
@@ -107,9 +118,11 @@ class MongoLogger:
         :param data: dump dict
         :return: None
         """
+        if data is None:
+            data = {}
         self._emit('warn', ssid, msg, data)
 
-    def info(self, ssid: str, msg: str, data: dict) -> None:
+    def info(self, ssid: str, msg: str, data=None) -> None:
         """
         Info message.
         :param ssid: session ID
@@ -117,9 +130,11 @@ class MongoLogger:
         :param data: dump dict
         :return: None
         """
+        if data is None:
+            data = {}
         self._emit('info', ssid, msg, data)
 
-    def debug(self, ssid: str, msg: str, data: dict) -> None:
+    def debug(self, ssid: str, msg: str, data=None) -> None:
         """
         Debug message.
         :param ssid: session ID
@@ -127,4 +142,6 @@ class MongoLogger:
         :param data: dump dict
         :return: None
         """
+        if data is None:
+            data = {}
         self._emit('debug', ssid, msg, data)

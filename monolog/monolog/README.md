@@ -16,7 +16,6 @@ dump = {
 }
 logger.cricital(ssid, msg, dump)
 ```
-Config must be in config directory, previously will be used *monolog.local.json*
 #### Config example
 ```json
 {
@@ -29,7 +28,7 @@ Config must be in config directory, previously will be used *monolog.local.json*
   "dataBase": "logs",
   "currentLevel": "debug",
   "collectionName": "test_collection_%Y%m", #datatime formated
-  "stdLoggerDuplicate": false,
+  "std_logger_duplicate": false,
   "node": {
             "host": "myService",
             "ip": "127.0.0.1"
