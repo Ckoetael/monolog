@@ -1,12 +1,16 @@
-# monolog
-MongoDB logger + std logger
-monolog Python package
-Singletoned MongoDB logger + std logger
-Installation
+# monolog Python package
+## Singletoned MongoDB logger + std logger
+
+### Installation
+```sh 
 pip install git+ssh://git@github.com/Ckoetael/monolog.git
-Requirements:
-pymongo>=3.10.1
-Using:
+```
+
+#### Requirements:
+* pymongo>=3.10.1
+
+#### Using:
+```python
 logger = MongoLogger()
 ssid = "123123321"
 msg = "test critical msg"
@@ -15,9 +19,10 @@ dump = {
     "info": "test_info"
 }
 logger.cricital(ssid, msg, dump)
-Config must be in config directory, previously will be used monolog.local.json
-
-Config example
+```
+Config must be in config directory, previously will be used *monolog.local.json*
+#### Config example
+```json
 {
   "serv": "localhost",
   "port": 27017,
@@ -34,3 +39,4 @@ Config example
             "ip": "127.0.0.1"
   }
 }
+```
