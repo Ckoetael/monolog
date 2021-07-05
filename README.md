@@ -3,7 +3,7 @@
 
 ### Installation
 ```sh 
-pip install git+ssh://git@github.com/Ckoetael/monolog.git
+pip install git+ssh://git@gitlab.crpo.su/vgds/monolog.git
 ```
 
 #### Requirements:
