@@ -1,0 +1,18 @@
+{
+  "connection": {
+    "serv": "mongo",
+    "port": 27017,
+    "username": "root",
+    "authSource": "admin",
+    "authMechanism": "SCRAM-SHA-1",
+    "password": "pwd",
+    "dataBase": "logs_services"
+  },
+  "currentLevel": "debug",
+  "mongoLoggerDuplicate": true,
+  "stdLoggerDuplicate": true,
+  "node": {
+    "host": "myService",
+    "ip": "127.0.0.1"
+  }
+}

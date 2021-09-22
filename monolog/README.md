@@ -1,5 +1,4 @@
 # monolog Python package
-## MongoDB logger + std logger
 
 ### Installation
 ```sh 

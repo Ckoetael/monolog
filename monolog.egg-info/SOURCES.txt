@@ -1,0 +1,11 @@
+README.md
+setup.py
+monolog/__init__.py
+monolog/__version__.py
+monolog/monolog.py
+monolog.egg-info/PKG-INFO
+monolog.egg-info/SOURCES.txt
+monolog.egg-info/dependency_links.txt
+monolog.egg-info/not-zip-safe
+monolog.egg-info/requires.txt
+monolog.egg-info/top_level.txt
