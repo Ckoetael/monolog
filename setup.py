@@ -25,7 +25,7 @@ setup(
     license="BSD",
     url=URL,
     packages=find_packages(),
-    install_requires=['pymongo>=3.10.1'],
+    install_requires=['pymongo'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
