@@ -1,7 +1,7 @@
 """
 Mongo logger package
 """
-from setuptools import setup
+from setuptools import setup, find_packages
 
 import monolog
 
@@ -20,6 +20,7 @@ setup(
     author_email=AUTHOR_EMAIL,
     license="BSD",
     url=URL,
+    packages=find_packages(),
     install_requires=['pymongo >= 3.10'],
     classifiers=[
         "Development Status :: 3 - Alpha",
