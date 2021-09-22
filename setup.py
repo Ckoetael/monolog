@@ -1,15 +1,11 @@
 """
 Mongo logger package
 """
-from distutils.core import setup
-
-from setuptools import find_packages
+from setuptools import setup
 
 import monolog
 
 
-PACKAGE = "monolog"
-NAME = "monolog"
 DESCRIPTION = 'MongoDB logger + std_logger'
 AUTHOR = 'Alex Minko'
 AUTHOR_EMAIL = "minko.a.r@gmail.com"
@@ -17,15 +13,14 @@ URL = "https://github.com/Ckoetael/monolog"
 VERSION = monolog.__version__
 
 setup(
-    name=NAME,
+    name="monolog",
     version=VERSION,
     description=DESCRIPTION,
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     license="BSD",
     url=URL,
-    packages=find_packages(),
-    install_requires=['pymongo'],
+    install_requires=['pymongo >= 3.10'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
